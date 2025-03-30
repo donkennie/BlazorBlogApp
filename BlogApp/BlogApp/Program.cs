@@ -1,15 +1,15 @@
 using BlogApp.Client.Pages;
 using BlogApp.Components;
 using Data;
-using Data.Models.Interfaces;
+using Data.Models.Interfaces; // Add this using directive
 
+// Existing code
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
-
 
 builder.Services.AddOptions<BlogApiJsonDirectAccessSetting>().
 Configure(options =>
@@ -45,6 +45,6 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(Counter).Assembly)
-    .AddAdditionalAssemblies(typeof(SharedComponents.Pages.Home).Assembly); ;
+    .AddAdditionalAssemblies(typeof(SharedComponents).Assembly); // Ensure SharedComponents is in the correct namespace
 
 app.Run();
