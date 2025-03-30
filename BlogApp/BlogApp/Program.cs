@@ -1,7 +1,7 @@
 using BlogApp.Client.Pages;
 using BlogApp.Components;
-using Data.Models.Interfaces;
 using Data;
+using Data.Models.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
 
 builder.Services.AddOptions<BlogApiJsonDirectAccessSetting>().
 Configure(options =>
@@ -43,6 +44,7 @@ app.UseAntiforgery();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(BlogApp.Client._Imports).Assembly);
+    .AddAdditionalAssemblies(typeof(Counter).Assembly)
+    .AddAdditionalAssemblies(typeof(SharedComponents.Pages.Home).Assembly); ;
 
 app.Run();
